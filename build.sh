@@ -69,7 +69,8 @@ case "$tipo" in
         folder="controller"
         class_name="${nombre}Controller"
         annotation="@RestController"
-        content="package com.${current_dir_name}.controller;\n\n${annotation}\npublic class ${class_name} {\n    // Endpoints aqui\n}"
+        import="org.springframework.web.bind.annotation.RestController"
+        content="package com.${current_dir_name}.controller;\n\nimport ${import};\n\n${annotation}\npublic class ${class_name} {\n    // Endpoints aqui\n}"
         ;;
     "dt") # DTO
         folder="dto"
@@ -79,7 +80,7 @@ case "$tipo" in
     "rp") # Repository
         folder="repository"
         class_name="I${nombre}Repository"
-        content="package com.${current_dir_name}.repository;\n\nimport org.springframework.data.jpa.repository.JpaRepository;\n\npublic interface ${class_name} extends JpaRepository<${nombre}, Long> {\n    // Consultas personalizadas aqui\n}"
+        content="package com.${current_dir_name}.repository;\n\nimport org.springframework.data.jpa.repository.JpaRepository;\n\npublic interface ${class_name} extends JpaRepository<${nombre}, Integer> {\n    // Consultas personalizadas aqui\n}"
         ;;
     "cf") # Config
         folder="config"
